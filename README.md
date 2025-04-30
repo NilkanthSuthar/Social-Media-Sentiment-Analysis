@@ -36,19 +36,19 @@ This project applies a rule-based sentiment scoring mechanism using predefined p
 
 1. **Install dependencies**
 
-   pip install pandas openpyxl
+   ```pip install pandas openpyxl```
 
 2. **Place input data**
 
-   Add your text data to a column named `Text` in `Input.xlsx`.
+   ```Add your text data to a column named `Text` in `Input.xlsx`.```
 
 3. **Run the script**
 
-   python Code.py
+   ```python Code.py```
 
 4. **Check output**
 
-   Results will be saved in `Output.xlsx` with sentiment labels.
+   ```Results will be saved in `Output.xlsx` with sentiment labels.```
 
 ---
 
