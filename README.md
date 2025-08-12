@@ -10,9 +10,9 @@
   </a>
 </p>
 
-# 📊 Social Media Sentiment Analysis
+# URL Sentiment Analyzer
 
-A **lexicon-based** sentiment analysis tool in Python that classifies social media posts (Twitter, Instagram, YouTube) into **Positive**, **Negative**, or **Neutral**. It cleans and preprocesses text, applies custom sentiment dictionaries and stop-word filters, and outputs results in Excel format for seamless downstream analysis.
+A professional Streamlit application and Python module for transformer-based sentiment analysis of web articles. Given a URL, the app extracts the main article text, detects language, selects an appropriate model, and returns **Positive**, **Neutral**, or **Negative** with confidence scores.
 
 ---
 
@@ -46,25 +46,19 @@ A **lexicon-based** sentiment analysis tool in Python that classifies social med
 
 ## Tech Stack
 
-- **Language**: Python 3.7+  
-- **Libraries**:  
-  - [pandas](https://pandas.pydata.org/)  
-  - [openpyxl](https://openpyxl.readthedocs.io/)  
+- **Language**: Python 3.9+
+- **Libraries**: Streamlit, Transformers, Torch, Pandas, Readability, BeautifulSoup
 
 ---
 
 ## Installation
 
 ```bash
-# Clone repository
-git clone https://github.com/NilkanthSuthar/Social-Media-Sentiment-Analysis.git
-cd Social-Media-Sentiment-Analysis
+# From repo root
+python -m venv .venv
+./.venv/Scripts/activate  # Windows PowerShell
+# source .venv/bin/activate  # macOS/Linux
 
-# (Optional) Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -72,41 +66,30 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. **Prepare your data**  
-   - Place messages in `Input.xlsx` under a column named `Text`.  
+### Run the UI
 
-2. **Run the analysis**  
-   ```bash
-   python Code.py
-   ```
+```bash
+streamlit run app.py
+```
 
-3. **Review output**  
-   - `Output.xlsx` contains:
-     | Text                             | Sentiment | Score |
-     |----------------------------------|-----------|-------|
-     | I love this product!             | Positive  |     3 |
-     | This was the worst experience.   | Negative  |    -2 |
-     | It’s okay, not bad nor great.    | Neutral   |     0 |
+- Single URL: paste a URL and click Analyze URL
+- Batch: upload a CSV with a `url` column and download results
+- Sidebar: select a model and threshold; optionally auto-pick model by detected language
 
 ---
 
 ## Input & Output
 
-| File         | Description                                   |
-|--------------|-----------------------------------------------|
-| `Input.xlsx` | Excel file with a `Text` column of messages   |
-| `Output.xlsx`| Excel file with `Text`, `Sentiment`, `Score`  |
+- Input: a single URL or a CSV with a `url` column
+- Output: sentiment label, score, class probabilities, detected language, model used; downloadable CSV/JSON
 
 ---
 
 ## Customization
 
-- **Sentiment Dictionaries**  
-  - Edit `MasterDictionary/positive.txt` and `MasterDictionary/negative.txt`.  
-- **Stop-Word List**  
-  - Modify `StopWords/stopwords.txt`.  
-- **Scoring Logic**  
-  - Adjust thresholds and weights in `Code.py`.
+- Change default model in `sentiment.py` (`_HF_MODEL_NAME_DEFAULT`)
+- Enable multilingual default in `pick_model_for_language`
+- Adjust sentence highlight count and thresholds in `highlight_sentences`
 
 ---
 
@@ -114,17 +97,20 @@ pip install -r requirements.txt
 
 ```
 .
-├── Code.py
-├── Input.xlsx
-├── Output.xlsx
-├── MasterDictionary/
-│   ├── positive.txt
-│   └── negative.txt
-├── StopWords/
-│   └── stopwords.txt
+├── app.py                     # Streamlit UI
+├── sentiment.py               # Analysis module (transformer-based, scraping, highlights)
+├── MasterDictionary/          # Legacy lexicons (not used in transformer mode)
+├── StopWords/                 # Legacy stopwords (not used in transformer mode)
 ├── requirements.txt
+├── .streamlit/config.toml     # Theme / server config
+├── .gitignore
+├── LICENSE                    # MIT
 └── README.md
 ```
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for details.
 
 ---
 

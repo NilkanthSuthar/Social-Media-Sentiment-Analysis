@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Data/Artifacts
+Output*
+models/
+*.xlsx
+*.csv
+*.json
+
+# IDE
+.idea/
+.vscode/
+
