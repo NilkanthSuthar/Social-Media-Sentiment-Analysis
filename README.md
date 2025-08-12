@@ -10,9 +10,9 @@
   </a>
 </p>
 
-# URL Sentiment Analyzer
+# Social Media Sentiment Analyzer
 
-A professional Streamlit application and Python module for transformer-based sentiment analysis of web articles. Given a URL, the app extracts the main article text, detects language, selects an appropriate model, and returns **Positive**, **Neutral**, or **Negative** with confidence scores.
+A professional Streamlit application and Python module for transformer-based sentiment analysis of social posts and web articles. Given a URL, the app extracts the main text, detects language, selects an appropriate model, and returns **Positive**, **Neutral**, or **Negative** with confidence scores.
 
 ---
 
@@ -66,13 +66,13 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Run the UI
+### Run the application
 
 ```bash
 streamlit run app.py
 ```
 
-- Single URL: paste a URL and click Analyze URL
+- Single URL: paste a post or article URL and click Analyze URL
 - Batch: upload a CSV with a `url` column and download results
 - Sidebar: select a model and threshold; optionally auto-pick model by detected language
 
@@ -80,7 +80,7 @@ streamlit run app.py
 
 ## Input & Output
 
-- Input: a single URL or a CSV with a `url` column
+- Input: a single social post or article URL, or a CSV with a `url` column
 - Output: sentiment label, score, class probabilities, detected language, model used; downloadable CSV/JSON
 
 ---

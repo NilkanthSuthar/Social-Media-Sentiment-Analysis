@@ -10,7 +10,7 @@ import json
 from sentiment import analyze_url, analyze_urls
 
 
-st.set_page_config(page_title="URL Sentiment Analyzer", layout="wide")
+st.set_page_config(page_title="Social Media Sentiment Analyzer", layout="wide")
 
 
 def read_uploaded_table(file) -> pd.DataFrame:
@@ -37,19 +37,19 @@ def sidebar_controls():
     )
     neutral_threshold = st.sidebar.slider("Neutral Zone (±)", 0.01, 0.50, 0.05, 0.01)
     auto_model = st.sidebar.checkbox("Auto-pick model based on detected language", value=True)
-    st.sidebar.caption("Transformer-based sentiment analysis for web pages using Hugging Face models.")
+    st.sidebar.caption("Transformer-based sentiment analysis for social content and web pages.")
     return hf_model_name, float(neutral_threshold), bool(auto_model)
 
 
 def main():
-    st.title("URL Sentiment Analyzer")
+    st.title("Social Media Sentiment Analyzer")
     st.caption(
-        "Enter a web URL. The app extracts the main article text and analyzes sentiment using a transformer model."
+        "Enter a social post or article URL. The app extracts the main text and analyzes sentiment using a transformer model."
     )
 
     hf_model_name, neutral_threshold, auto_model = sidebar_controls()
 
-    url = st.text_input("Enter URL", placeholder="https://example.com/article")
+    url = st.text_input("Enter post URL", placeholder="https://example.com/post-or-article")
     uploaded = st.file_uploader("Or upload a CSV with a 'url' column for batch analysis", type=["csv"], accept_multiple_files=False)
 
     col1, _ = st.columns([1, 5])
@@ -127,7 +127,7 @@ def main():
 
     st.markdown("---")
     with st.expander("About"):
-        st.write("Transformer-only sentiment analysis on scraped article text from a given URL. Features: readability-based extraction, language detection, model selection, highlights, batch analysis.")
+        st.write("Transformer-only sentiment analysis on scraped social content or article text. Features: readability-based extraction, language detection, model selection, sentence highlights, and batch analysis.")
 
 
 if __name__ == "__main__":
